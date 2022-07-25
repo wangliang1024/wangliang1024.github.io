@@ -352,6 +352,9 @@
 		const isExpired = localStorage.getItem(expireKey) < Date.now();
 
 		INDEXS = JSON.parse(localStorage.getItem(indexKey));
+		if (!INDEXS) {
+			INDEXS = {};
+		}
 
 		if (isExpired) {
 			INDEXS = {};
@@ -363,14 +366,15 @@
 		let count = 0;
 
 		paths.forEach(function (path) {
-			if (INDEXS[path]) {
+			let indexKey = path === "/../issues" ? "/issues" : path; // 特殊处理一下
+
+			if (INDEXS[indexKey]) {
 				return count++;
 			}
 
 			Docsify.get(vm.router.getFile(path), false, vm.config.requestHeaders).then(
 				function (result) {
-					let indexKey = path === "/../issues" ? "/issues" : path; // 特殊处理一下
-					INDEXS[indexKey] = genIndex(path, result, vm.router, config.depth);
+					INDEXS[key] = genIndex(path, result, vm.router, config.depth);
 					len === ++count && saveData(config.maxAge, expireKey, indexKey);
 				}
 			);
