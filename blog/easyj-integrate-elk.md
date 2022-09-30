@@ -141,7 +141,7 @@ public class TestELK {
 
     @Test
     public void testContextRelationLog() {
-        Logger log = LoggerFactory.getLogger(Test.class);
+        Logger log = LoggerFactory.getLogger(TestELK.class);
         try {
             // 设置上下文
             MDC.put("id", "1234567890");
@@ -164,8 +164,6 @@ public class TestELK {
 
 调用EasyJ专门提供了追踪类来设置上下文：`icu.easyj.core.trace.TraceUtils`
 
-该工具类使用了 `门面模式`，主要用于追踪请求或日志或其他更多内容；
-
 默认情况下，该工具类实现了 `zipkin` 和 `slf4j` 上下文追踪内容，开发者可通过 `SPI机制` 自定义增加实现类；
 
 推荐使用该工具类代替`org.slf4j.MDC`，代码如下：
@@ -184,7 +182,7 @@ public class TestELK {
 
     @Test
     public void testContextRelationLog() {
-        Logger log = LoggerFactory.getLogger(Test.class);
+        Logger log = LoggerFactory.getLogger(TestELK.class);
         try {
             // 设置上下文
             TraceUtils.put("id", "1234567890");
