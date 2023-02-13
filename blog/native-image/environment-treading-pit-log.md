@@ -4,7 +4,7 @@
 
 ### 一、多环境共性问题：
 
-#### 1.1、`native-maven-plugin` 打包插件自动执行 `gu install native-image` 时报错：
+#### 问题1.1、`native-maven-plugin` 打包插件自动执行 `gu install native-image` 时报错：
 
 ##### 错误日志：
 
@@ -20,7 +20,7 @@ I/O error occurred: PKIX path building failed: sun.security.provider.certpath.Su
 ```
 
 ##### 解决方案：
-执行 <a href="#/native-image/environment-treading-pit-log?id=_41、附件1：installcertjava">第四章节附件1</a> 的java程序，生成证书文件：
+执行 <a href="#/native-image/environment-treading-pit-log?id=附件41、installcertjava">附件4.1</a> 的java程序，生成证书文件：
 ```shell
 #javac 生成InstallCert.class
 javac InstallCert.java
@@ -37,7 +37,7 @@ _注意：如果生成失败了，请尝试直接下载我生成好的：<a href
 
 ### 二、Windows环境问题：
  
-#### 2.1、`Exception during JVMCI compiler initialization`
+#### 问题2.1、`Exception during JVMCI compiler initialization`
 
 ##### 错误日志：
 
@@ -72,7 +72,7 @@ Error: Image build request failed with exit status 1
 
 ### 三、Linux环境问题：
 
-#### 3.2、问题2：Image build request failed with exit status 137
+#### 问题3.1、Image build request failed with exit status 137
 
 ##### 错误日志：
 ```log
@@ -89,9 +89,9 @@ Error: Image build request failed with exit status 1
 
 ### 四、附件
 
-#### 4.1、附件1：`InstallCert.java`
+#### 附件4.1、`InstallCert.java`
 
-解决 <a href="#/native-image/environment-treading-pit-log?id=_11、native-maven-plugin-打包插件自动执行-gu-install-native-image-时报错：">问题1.1</a> 时使用。
+解决 <a href="#/native-image/environment-treading-pit-log?id=问题11、native-maven-plugin-打包插件自动执行-gu-install-native-image-时报错：">问题1.1</a> 时使用。
 ```java
 import java.io.*;
 import java.security.*;
