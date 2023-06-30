@@ -4,15 +4,6 @@
 	const jsRootPath = c.jsRootPath;
 
 
-	// 部分页面特殊处理一下
-	if (pathName === "/docs/") {
-		setInterval(function () {
-			if (l.hash === "#/discussion") {
-				l.href = "../#/discussion";
-			}
-		}, 100);
-	}
-
 	// 生成 EditOnGithubPlugin 的url
 	const editOnGithubUrl = c.vcsRoot + c.communityName + '/' + c.projectName + '/blob/' + c.branchName + pathName;
 	c.debug && console.info('editOnGithubUrl = "' + editOnGithubUrl + '";');
@@ -75,7 +66,7 @@
 				editOnGithubUrl,
 				null,
 				function () {
-					return '帮助我们改善此文档'
+					return '帮助我完善此页内容'
 				}
 			)
 		]
@@ -97,12 +88,10 @@
 
 	// 获取页面标题
 	function pageTitle() {
-		if (pathName.startsWith('/docs')) {
-			return '📝EasyJ文档';
-		} else if (pathName.startsWith('/blog')) {
-			return '📚博客';
+		if (pathName.startsWith('/blog')) {
+			return '📚技术博客';
 		} else {
-			return 'EasyJ开源社区';
+			return '个人主页';
 		}
 	}
 })(window, document, location);
