@@ -1,4 +1,4 @@
-* [个人博客主页](/)
+* [博客主页](/)
 * ————————————————
 * [GraalVM Native Image](native-image/)
   * [理论与实践](native-image/theory-practice.md)

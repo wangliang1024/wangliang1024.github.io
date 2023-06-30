@@ -1,7 +1,7 @@
 {
 	"name": "wangliang1024.github.io",
 	"version": "1.0.0",
-	"description": "王良个人主页、个人博客",
+	"description": "王良个人主页、技术博客",
 	"main": "./src/js/config.js",
 	"directories": {
 		"doc": "docs"

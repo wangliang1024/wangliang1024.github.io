@@ -13,6 +13,9 @@
 		name: pageTitle(),
 		repo: c.vcsRoot + c.communityName,
 
+		// 封面
+		//coverpage: w.config.pathName === "/",
+
 		// 侧边导航栏
 		loadSidebar: true,
 		subMaxLevel: 3,
