@@ -1,7 +1,7 @@
 {
-	"name": "easyj-projects.github.io",
+	"name": "wangliang1024.github.io",
 	"version": "1.0.0",
-	"description": "EasyJ官网项目",
+	"description": "王良个人主页、个人博客",
 	"main": "./src/js/config.js",
 	"directories": {
 		"doc": "docs"
@@ -23,15 +23,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/easyj-projects/easyj-projects.github.io.git"
+		"url": "git+https://github.com/wangliang1024/wangliang1024.github.io.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/easyj-projects/easyj-projects.github.io/issues"
+		"url": "https://github.com/wangliang1024/wangliang1024.github.io/issues"
 	},
-	"homepage": "https://easyj.icu",
+	"homepage": "https://wangliang1024.cn",
 	"dependencies": {
 		"gulp-jshint": "^2.1.0"
 	}
