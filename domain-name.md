@@ -1,4 +1,5 @@
 # 可访问的域名
 
-* [https://easyj.icu/](https://easyj.icu/)
-* [https://easyj-projects.gitee.io/easyj-projects.github.io/](https://easyj-projects.gitee.io/easyj-projects.github.io/)
+* https://wangliang1024.cn/
+* https://wangliang1024.github.io/wangliang1024.github.io/
+* https://wangliang1024.gitee.io/wangliang1024.github.io/
