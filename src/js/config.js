@@ -2,15 +2,15 @@
 	// 环境名：不同 location.hostname 对应不同的环境名
 	const env = getEnv();
 
-	// 项目名配置
-	const projectName = 'easyj-projects.github.io';
+	// 站点源码项目名配置
+	const projectName = 'wangliang1024.github.io';
 
 	// 站点配置
 	const c = {
-		debug: true/*(env !== 'github')*/, // 非github环境，全部默认启用debug
+		debug: localStorage.getItem("defaultDebug") !== "false" && localStorage.getItem("defaultDebug") !== "0", // 默认启用debug，除非本地存储中有 defaultDebug=false
 		env: env, // 环境名：local、gitee、github
 		vcsRoot: 'https://github.com/', // 代码仓库根地址
-		communityName: 'easyj-projects', // 社区名称/项目组名称
+		communityName: 'wangliang1024', // 社区名称/项目组名称
 		projectName: projectName, // 项目名
 		branchName: 'docsify', // 项目分支名
 		pathName: getPathName(), // 自动生成 pathName，代替 location.pathname 使用，避免部分插件在 'pathname' 存在 '二级目录' 或 'index.html' 时执行失败
@@ -42,7 +42,7 @@
 	function getEnv() {
 		if (l.hostname === 'localhost' || l.hostname === '127.0.0.1') {
 			return 'local';
-		} else if (l.host === 'easyj-projects.gitee.io') {
+		} else if (l.host === 'wangliang1024.gitee.io') {
 			return 'gitee';
 		} else {
 			return 'github';
