@@ -1,4 +1,4 @@
-* [博客主页](/)
+* [个人博客主页](/)
 * ————————————————
 * [GraalVM Native Image](native-image/)
   * [理论与实践](native-image/theory-practice.md)
@@ -8,3 +8,5 @@
   * 踩坑记录
     * [打包环境踩坑](native-image/environment-treading-pit-log.md)
     * [复杂应用踩坑](native-image/treading-pit-log.md)
+* ————————————————
+* [EasyJ开源社区博客](https://easyj.icu/blog/)
