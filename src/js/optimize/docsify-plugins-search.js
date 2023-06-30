@@ -384,7 +384,7 @@
 
 			Docsify.get(vm.router.getFile(path), false, vm.config.requestHeaders).then(
 				function (result) {
-					INDEXS[key] = genIndex(path, result, vm.router, config.depth);
+					INDEXS[path] = genIndex(path, result, vm.router, config.depth);
 					len === ++count && saveData(config.maxAge, expireKey, indexKey);
 				}
 			);
