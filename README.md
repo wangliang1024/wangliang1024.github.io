@@ -1,29 +1,21 @@
 <!-- 
-# 主页
+# 关于我
 -->
-<h1>
-  <b style="font-size: 180%; margin-left: -10px; font-weight: 700">EasyJ</b>
-  <a href="https://repo1.maven.org/maven2/icu/easyj" target="_blank">
-    <img src="https://img.shields.io/maven-central/v/icu.easyj/easyj-parent.svg" alt="easyj.version">
-  </a>
-  <a href="https://repo1.maven.org/maven2/icu/easyj/maven/plugins/easyj-maven-plugin" target="_blank">
-    <img src="https://img.shields.io/maven-central/v/icu.easyj.maven.plugins/easyj-maven-plugin.svg" alt="easyj-maven-plugin.version">
-  </a>
-</h1> 
 
-[![Test](https://github.com/easyj-projects/easyj/actions/workflows/test.yml/badge.svg)](https://github.com/easyj-projects/easyj/actions/workflows/test.yml)
-[![License](https://img.shields.io/github/license/easyj-projects/easyj.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![CodeCov](https://codecov.io/gh/easyj-projects/easyj/branch/develop/graph/badge.svg)](https://codecov.io/gh/easyj-projects/easyj)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/a8b229cc187c4d0ebcb1057d8f89b4ab)](https://www.codacy.com/gh/easyj-projects/easyj/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=easyj-projects/easyj&amp;utm_campaign=Badge_Grade)
+[//]: # (我的头像)
+<div style="text-align:center">
+    <img src="img/avatar.jpg" width="150" />
+</div>
 
-> 简化Java开发的必备组件
+[//]: # (我的简介)
+<div class="introduction">
 
-- **&nbsp;&nbsp;&nbsp;&nbsp;快捷集成：** 想要使用哪个功能，引用对应的starter依赖即可
-- **简单的配置：** 只需配置yaml，连 `logback.xml` 也转换成了yaml进行配置
-- **&nbsp;&nbsp;&nbsp;&nbsp;即插即用：** `@Cache304`、`@ExcelExport`、`出入参加密解密`
-- **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中间件：**` DWZ（短链接服务）`、`WebSocket服务中间件`
-- **&nbsp;Maven插件：** `simplify`（代替 `org.codehaus.mojo:flatten-maven-plugin` 插件）、`spring-boot-extend`（支持 `includeGroupIds`）
+- **姓&nbsp;&nbsp;&nbsp;名：** 王良
+- **网&nbsp;&nbsp;&nbsp;名：** 烂番茄、wangliang181230、wangliang1024
+- **公&nbsp;&nbsp;&nbsp;司：** [宁波市科技园区明天医网科技有限公司](http://www.tomtaw.com.cn)
+- **github：** [wangliang181230](https://github.com/wangliang181230)
+- **&nbsp;&nbsp;&nbsp;gitee：** [wangliang181230](https://gitee.com/wangliang181230)
+- **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QQ：** <a href='tencent://message/?uin=841369634'>841369634</a>
+- **&nbsp;&nbsp;email：** <a href="mailto:841369634@qq.com">841369634@qq.com</a>
 
-<a href="./docs">文档</a> &emsp;
-[GitHub仓库](https://github.com/easyj-projects) &emsp;
-[Gitee仓库](https://gitee.com/easyj-projects)
+</div>
