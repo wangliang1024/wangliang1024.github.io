@@ -1,2 +1,0 @@
-# easyj-ocr-sdk
-
