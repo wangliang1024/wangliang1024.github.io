@@ -7,5 +7,4 @@
 欢迎感兴趣的朋友加入。
 
 * https://easyj.icu/
-* https://easyj-projects.github.io/easyj-projects.github.io/
 * https://easyj-projects.gitee.io/easyj-projects.github.io/
