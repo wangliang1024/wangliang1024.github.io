@@ -1,5 +1,5 @@
 * [博客说明](/)
-* [EasyJ开源社区博客](https://easyj.icu/blog/)
+* [外链：EasyJ开源社区博客](https://easyj.icu/blog/)
 * ————————————————
 * [GraalVM Native Image：](native-image/)
   * [理论与实践](native-image/theory-practice.md)
