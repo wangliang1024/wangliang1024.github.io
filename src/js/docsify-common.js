@@ -95,9 +95,9 @@
 	// 获取页面标题
 	function pageTitle() {
 		if (pathName.startsWith('/blog')) {
-			return '📚技术博客';
+			return '📚王良的技术博客';
 		} else {
-			return '个人主页';
+			return '王良的个人主页';
 		}
 	}
 })(window, document, location);
