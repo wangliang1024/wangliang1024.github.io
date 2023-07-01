@@ -1,4 +1,4 @@
-.introduction{width:380px;margin:0 auto}
+.introduction{width:400px;margin:0 auto}
 .introduction ul{list-style:none}
 
 .fl{float:left}
@@ -13,3 +13,5 @@
 
 .markdown-section pre > code {line-height:1.3rem}
 .markdown-section hr {border-bottom-width:3px}
+
+.sidebar ul li[class]{background-color:#f1f1f1}
