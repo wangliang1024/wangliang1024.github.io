@@ -75,6 +75,9 @@
 		]
 	};
 
+	// 打印日志
+	c.debug && console.info("$docsify", $docsify);
+
 
 	// 常用插件
 	d.writeln('<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>'); // 插件：图片缩放

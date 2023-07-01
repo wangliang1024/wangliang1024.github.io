@@ -34,7 +34,7 @@
 
 
 	// 打印配置值日志
-	c.debug && console.info("window.config: " + JSON.stringify(c));
+	c.debug && console.info("window.config:", c);
 
 
 	//region 自动生成部分配置的方法
@@ -42,7 +42,7 @@
 	function getEnv() {
 		if (l.hostname === 'localhost' || l.hostname === '127.0.0.1') {
 			return 'local';
-		} else if (l.host === 'wangliang1024.gitee.io') {
+		} else if (l.host.endsWith("gitee.io")) {
 			return 'gitee';
 		} else {
 			return 'github';
