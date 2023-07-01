@@ -42,7 +42,7 @@
 	function getEnv() {
 		if (l.hostname === 'localhost' || l.hostname === '127.0.0.1') {
 			return 'local';
-		} else if (l.host === 'wangliang1024.gitee.io') {
+		} else if (l.host.endsWith("gitee.io")) {
 			return 'gitee';
 		} else {
 			return 'github';
