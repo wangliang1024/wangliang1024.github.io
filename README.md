@@ -11,7 +11,7 @@
 <div class="introduction">
 
 - **姓&nbsp;&nbsp;&nbsp;名：** 王良
-- **网&nbsp;&nbsp;&nbsp;名：** 烂番茄、wangliang181230、wangliang1024
+- **网&nbsp;&nbsp;&nbsp;名：** wangliang181230、wangliang1024
 - **公&nbsp;&nbsp;&nbsp;司：** [宁波市科技园区明天医网科技有限公司](http://www.tomtaw.com.cn)
 - **职&nbsp;&nbsp;&nbsp;务：** Java架构师
 - **github：** [wangliang181230](https://github.com/wangliang181230)、[wangliang1024](https://github.com/wangliang1024)
