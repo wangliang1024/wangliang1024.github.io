@@ -67,7 +67,7 @@
 
 	function getJsRootPath() {
 		let scripts = d.getElementsByTagName("script");
-		let currentScriptSrc = scripts[scripts.length - 1].getAttribute("src");
+		let currentScriptSrc = scripts[scripts.length - 1].getAttribute("src"); // 当前js文件路径
 		return currentScriptSrc.substring(0, currentScriptSrc.indexOf("config"));
 	}
 
