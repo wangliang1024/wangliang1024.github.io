@@ -14,6 +14,7 @@
 		projectName: projectName, // 项目名
 		branchName: 'docsify', // 项目分支名
 		pathName: getPathName(), // 自动生成 pathName，代替 location.pathname 使用，避免部分插件在 'pathname' 存在 '二级目录' 或 'index.html' 时执行失败
+		rootPath: getRootPath(), // 自动生成 rootPath
 		jsRootPath: getJsRootPath() // 自动生成 jsRootPath
 	};
 	w.config = c;
@@ -65,6 +66,14 @@
 		return pn;
 	}
 
+	// 获取站点根地址
+	function getRootPath() {
+		let scripts = d.getElementsByTagName("script");
+		let currentScriptSrc = scripts[scripts.length - 1].getAttribute("src"); // 当前js文件路径
+		return currentScriptSrc.substring(0, currentScriptSrc.indexOf("js/"));
+	}
+
+	// 获取js根地址
 	function getJsRootPath() {
 		let scripts = d.getElementsByTagName("script");
 		let currentScriptSrc = scripts[scripts.length - 1].getAttribute("src"); // 当前js文件路径
