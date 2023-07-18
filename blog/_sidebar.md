@@ -13,5 +13,6 @@
 * 分布式事务：
   * [分布式事务原理与Seata](distributed-transaction-and-seata.md)
 * ————————————————
-* 项目构建：
+* 基础知识学习：
   * [Maven原理、应用、插件开发](maven.md)
+  * [SpringBoot详解：环境、自动装配](spring-boot.md)

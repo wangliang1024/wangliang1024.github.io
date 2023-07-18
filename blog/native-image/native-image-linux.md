@@ -53,7 +53,7 @@ yum install gcc
 source /etc/profile
 ```
 
-执行完命令，最好重启系统一下，保证环境变量已经生效。
+执行完命令，最好重启一下系统，保证环境变量已经生效。
 ```shell
 #重启系统命令
 reboot
