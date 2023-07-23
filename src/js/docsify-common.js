@@ -85,9 +85,9 @@
 	d.writeln('<script src="' + rootPath + 'npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>'); // 插件：代码复制
 	d.writeln('<script src="' + rootPath + 'npm/docsify-count/dist/countable.min.js"></script>'); // 插件：字数统计
 	d.writeln('<script src="' + rootPath + 'npm/docsify-pagination/dist/docsify-pagination.min.js"></script>'); // 插件：分页导航
-	// if (!window.location.pathname.endsWith("/blog/")) { // 博客页面暂时不需要侧边栏折叠
-	// 	d.writeln('<script src="' + rootPath + 'npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>'); // 插件：侧边栏折叠
-	// }
+//	if (l.pathname.endsWith("/blog/")) {
+//		d.writeln('<script src="' + rootPath + 'npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>'); // 插件：侧边栏折叠
+//	}
 	d.writeln('<script src="' + rootPath + 'npm/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>'); // 插件：返回顶部
 	d.writeln('<script src="' + rootPath + 'npm/docsify-tabs/dist/docsify-tabs.min.js"></script>'); // 插件：Tabs
 	// 插件：全文检索
