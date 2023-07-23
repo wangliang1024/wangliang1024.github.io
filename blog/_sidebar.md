@@ -24,8 +24,8 @@
 * <b>[碎片知识说明](other-article/)</b>
 * <b>Java进阶：</b>
   * [多线程](other-article/java/multi-threads.md)
-  * [开发效率](other-article/efficiency/development-efficiency.md)
   * [性能优化](other-article/java/optimize-performance.md)
+  * [开发效率](other-article/efficiency/development-efficiency.md)
 * <b>开发工具：</b>
   * [IDEA好用的插件](other-article/ide/idea-plugins.md)
 * <b>全文检索：</b>
