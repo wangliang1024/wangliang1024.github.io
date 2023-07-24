@@ -33,9 +33,21 @@
 			break;
 	}
 
+	// title
+	c.title = "王良的个人主页";
+	if (l.pathname.endsWith("/blog/") || l.pathname.endsWith("/blog") || l.pathname.endsWith("/blog/index.html")) {
+		c.title = "王良的技术博客";
+	}
 
 	// 打印配置值日志
 	c.debug && console.info("window.config:", c);
+
+	// 保持title后面拼接上 c.title
+	setInterval(function () {
+		if (!d.title.endsWith(c.title)) {
+			d.title = d.title + " - " + c.title;
+		}
+	}, 50);
 
 
 	//region 自动生成部分配置的方法
