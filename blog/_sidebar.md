@@ -8,9 +8,9 @@
 
 
 * <b>——————— 专题知识 ———————</b>
-* <b>分布式事务：</b>
+* <b>专题：分布式事务</b>
   * [分布式事务原理与Seata](distributed-transaction-and-seata.md)
-* <b>[GraalVM Native Image：](native-image/)</b>
+* <b>[专题：GraalVM Native Image](native-image/)</b>
   * [理论与实践](native-image/theory-practice.md)
   * 打包简单SpringBoot应用：
     * [Windows环境](native-image/native-image-windows.md)
