@@ -17,5 +17,5 @@
 
 .sidebar ul *.active,.sidebar ul *.open{background-color:#f5f5f5!important}
 .sidebar ul *[class]:not(.file,.folder){background-color:#f5f5f5}
-.sidebar ul li b a{font-weight:900;color:black;cursor:pointer}
+.sidebar ul li p>a{font-weight:900;color:#364149;font-size:15px}
 .sidebar ul li .active>a {border-right:2px solid;color:#42b983;color:var(--theme-color,#42b983);font-weight:600}
