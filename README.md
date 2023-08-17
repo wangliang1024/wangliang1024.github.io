@@ -19,6 +19,6 @@
 - **&nbsp;&nbsp;email：** <a href="mailto:841369634@qq.com">841369634@qq.com</a>
 - **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QQ：** <a href='tencent://message/?uin=841369634'>841369634</a>
 - **钉&nbsp;&nbsp;&nbsp;钉：** deunihtoal
-- **开&nbsp;&nbsp;&nbsp;源：** [Seata Committer](https://github.com/seata/seata/commits?author=wangliang181230)、[EasyJ开源社区维护者](https://easyj.icu/)
+- **开&nbsp;&nbsp;&nbsp;源：** [Seata Committer](https://github.com/seata/seata/commits?author=wangliang181230)、[EasyJ开源社区作者](https://easyj.icu/)
 
 </div>
