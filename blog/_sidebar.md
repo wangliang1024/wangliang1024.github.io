@@ -38,4 +38,5 @@
 * 人工智能（AI）：
     * [ChatGPT](other-article/ai/chat-gpt.md)
 
-* [搭建网站](other-article/website/build-website.md)
+* 搭建网站：
+    * [自建网站](other-article/website/build-website.md)
