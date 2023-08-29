@@ -3,13 +3,14 @@
 
 
 * <p>——— 📔 基础及进阶知识学习 ———</p>
-* [Maven原理、应用、插件开发](maven.md)
-* [SpringBoot详解：环境、自动装配](spring-boot.md)
+* [Maven原理、应用、插件开发](maven/maven.md)
+* [SpringBoot详解：环境、自动装配](spring/spring-boot.md)
 
 
 * ——————— 专题知识 ———————
 * 专题：分布式事务
-    * [分布式事务原理与Seata](distributed-transaction-and-seata.md)
+    * [分布式事务原理与Seata](seata/distributed-transaction-and-seata.md)
+    * [Seata即将支持达梦数据库](seata/seata-supported-dm.md)
 
 * [专题：GraalVM Native Image](native-image/)
     * [理论与实践](native-image/theory-practice.md)
