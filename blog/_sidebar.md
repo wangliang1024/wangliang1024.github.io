@@ -7,7 +7,7 @@
 * [SpringBoot详解：环境、自动装配](spring/spring-boot.md)
 
 
-* ——————— 专题知识 ———————
+* —————— 专题知识 ——————
 * 专题：分布式事务
     * [分布式事务原理与Seata](seata/distributed-transaction-and-seata.md)
     * [Seata即将支持达梦数据库](seata/seata-supported-dm.md)
@@ -21,6 +21,9 @@
         * [打包环境踩坑](native-image/environment-treading-pit-log.md)
         * [复杂应用踩坑](native-image/treading-pit-log.md)
 
+* 专题：配置中心
+    * Apollo
+        * [Docker安装Apollo](config-center/apollo/apollo-install-by-docker.md)
 
 * ————— ⭐️ 碎片知识收集 —————
 * [碎片知识说明](other-article/)
