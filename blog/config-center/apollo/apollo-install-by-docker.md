@@ -6,7 +6,7 @@
 
 ### 1.1、架构设计图
 
-![apollo-architecture-design-diagram](img/apollo-architecture-design-diagram.png)
+![Apollo架构设计图](img/apollo-architecture-design-diagram.png)
 
 
 ### 1.2、四个核心模块及其主要功能
@@ -71,10 +71,13 @@
 
 注：以上脚本，会自动创建database和表，如图：
 
+#### 图1：
 ![数据库截图1](img/database-screenshot1.png)
 
+#### 图2：
 ![数据库截图2](img/database-screenshot2.png)
 
+#### 图3：
 ![数据库截图3](img/database-screenshot3.png)
 
 
