@@ -61,7 +61,7 @@ Seata的`AT`模式，目前支持 `INSERT`、`UPDATE`、`DELETE` 三类 DML 语�
 ## 遗留的问题
 
 ### 问题描述：
-达梦的驱动程序 `com.dameng:DmJdbcDriver18:8.1.2.192` （目前公网仓库中的最新版本），
+达梦的驱动程序 `com.dameng:DmJdbcDriver18:8.1.2.192` （目前公网仓库中的最新版本，2023-02-07发布的），
 在碰到违反唯一约束异常的时候，并未抛出 `SQLIntegrityConstraintViolationException`，而是抛出了 `BatchUpdateException`。
 目前该问题已反馈给达梦技术人员，还未得到回复。
 
