@@ -6,7 +6,7 @@
 
 ### 1.1、架构设计图
 
-![img.png](img/apollo-architecture-design-diagram.png)
+![Apollo架构设计图](img/apollo-architecture-design-diagram.png)
 
 
 ### 1.2、四个核心模块及其主要功能
@@ -60,7 +60,7 @@
 
 ## 二、创建Apollo所需的数据库
 
-> 注意：文章下面使用的IP地址 `192.168.145.129` 是我测试用的虚拟机的IP，大家可以根据自己的实际情况进行调整。
+> 注意：文章下面使用的IP地址 `192.168.100.115` 是我测试用的虚拟机的IP，大家可以根据自己的实际情况进行调整。
 
 ### 2.1、创建数据库
 
@@ -103,18 +103,19 @@ docker pull apolloconfig/apollo-portal:latest
 docker run \
     -d \
     -p 8080:8080 \
-    -e SPRING_DATASOURCE_URL="jdbc:mysql://192.168.145.129:3306/ApolloConfigDB?characterEncoding=utf8" \
+    -e SPRING_DATASOURCE_URL="jdbc:mysql://192.168.100.115:3306/ApolloConfigDB?characterEncoding=utf8" \
     -e SPRING_DATASOURCE_USERNAME=root \
     -e SPRING_DATASOURCE_PASSWORD=123456 \
     -e "EUREKA_INSTANCE_PREFERIPADDRESS=true" \
-    -e "EUREKA_INSTANCE_IPADDRESS=192.168.145.129" \
+    -e "EUREKA_INSTANCE_IPADDRESS=192.168.100.115" \
     -e "EUREKA_INSTANCE_NONSECUREPORT=8080" \
-    -e "EUREKA_INSTANCE_INSTANCEID=192.168.145.129:apollo-configservice:8080" \
+    -e "EUREKA_INSTANCE_INSTANCEID=192.168.100.115:apollo-configservice:8080" \
     -v /tmp/logs:/opt/logs  \
     --name apollo-configservice \
     apolloconfig/apollo-configservice:latest
 
 docker logs -f apollo-configservice
+
 ```
 
 ### 4.2、运行 Apollo Admin Service
@@ -123,21 +124,22 @@ docker logs -f apollo-configservice
 docker run \
     -d \
     -p 8090:8090 \
-    -e SPRING_DATASOURCE_URL="jdbc:mysql://192.168.145.129:3306/ApolloConfigDB?characterEncoding=utf8" \
+    -e SPRING_DATASOURCE_URL="jdbc:mysql://192.168.100.115:3306/ApolloConfigDB?characterEncoding=utf8" \
     -e SPRING_DATASOURCE_USERNAME=root \
     -e SPRING_DATASOURCE_PASSWORD=123456 \
     -e "EUREKA_INSTANCE_PREFERIPADDRESS=true" \
-    -e "EUREKA_INSTANCE_IPADDRESS=192.168.145.129" \
+    -e "EUREKA_INSTANCE_IPADDRESS=192.168.100.115" \
     -e "EUREKA_INSTANCE_NONSECUREPORT=8090" \
-    -e "EUREKA_INSTANCE_INSTANCEID=192.168.145.129:apollo-adminservice:8090" \
+    -e "EUREKA_INSTANCE_INSTANCEID=192.168.100.115:apollo-adminservice:8090" \
     -v /tmp/logs:/opt/logs \
     --name apollo-adminservice \
     apolloconfig/apollo-adminservice:latest
 
 docker logs -f apollo-adminservice
+
 ```
 
-以上两个服务的容器都启动完成后，访问注册中心看一下两个服务是否都已注册成功：http://192.168.145.129:8091/
+以上两个服务的容器都启动完成后，访问注册中心看一下两个服务是否都已注册成功：http://192.168.100.115:8080/
 
 注册成功情况如图：
 ![Eureka截图](img/eureka.png)
@@ -148,16 +150,17 @@ docker logs -f apollo-adminservice
 docker run \
     -d \
     -p 8070:8070 \
-    -e SPRING_DATASOURCE_URL="jdbc:mysql://192.168.145.129:3306/ApolloPortalDB?characterEncoding=utf8" \
+    -e SPRING_DATASOURCE_URL="jdbc:mysql://192.168.100.115:3306/ApolloPortalDB?characterEncoding=utf8" \
     -e SPRING_DATASOURCE_USERNAME=root \
     -e SPRING_DATASOURCE_PASSWORD=123456 \
     -e APOLLO_PORTAL_ENVS=pro \
-    -e PRO_META=http://192.168.145.129:8080 \
+    -e PRO_META=http://192.168.100.115:8080 \
     -v /tmp/logs:/opt/logs \
     --name apollo-portal \
     apolloconfig/apollo-portal:latest
 
 docker logs -f apollo-portal
+
 ```
 
 #### 参数说明：
@@ -173,12 +176,16 @@ docker logs -f apollo-portal
 
 ## 五、测试
 
-访问地址： http://192.168.145.129:8070/signin
+访问地址：http://192.168.100.115:8070/
 
-默认账号密码：apollo / admin
+账号密码：apollo / admin
 
 
 ## 六、SpringBoot集成
+
+> 此章节内容待完善
+
+<!--
 
 集成源代码（Demo）： ms-config-center: ms-config-center
 
@@ -189,7 +196,7 @@ server:
 app:
   id: sprintboot-apollo-test  #使用的 Apollo 的项目（应用）编号
 apollo:
-  meta: http://192.168.145.129:8080 #Apollo Meta Server 地址
+  meta: http://192.168.100.115:8080 #Apollo Meta Server 地址
   cacheDir: ./ms-config-apollo/config
   bootstrap:
     enabled: true   #是否开启 Apollo 配置预加载功能。默认为 false。
@@ -200,3 +207,4 @@ apollo:
 test:
   key: xiaxinyu
 ```
+-->
