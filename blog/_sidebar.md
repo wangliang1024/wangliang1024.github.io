@@ -10,7 +10,7 @@
 * —————— 专题知识 ——————
 * 专题：分布式事务
     * [分布式事务原理与Seata](seata/distributed-transaction-and-seata.md)
-    * [Seata即将支持达梦数据库](seata/seata-supported-dm.md)
+    * [Seata1.8.0支持达梦数据库](seata/seata-supported-dm.md)
 
 * [专题：GraalVM Native Image](native-image/)
     * [理论与实践](native-image/theory-practice.md)
