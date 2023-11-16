@@ -83,7 +83,7 @@
 
 ### 2.2、修改Eureka的地址
 
-进入 `ApolloConfigDB` 数据库，找到 `ServiceConfig` 表，修改 `Eureka` 的地址，否则下面部署Apollo时，将会服务注册失败的异常。
+进入 `ApolloConfigDB` 数据库，找到 `ServiceConfig` 表，修改 `Eureka` 的地址为即将安装的 `Apollo Config Service` 的地址，否则下面部署Apollo时，将会抛出服务注册失败的异常。
 
 修改后的样子如图：
 ![修改Eureka地址截图](img/modify-eureka-service-url.png)
