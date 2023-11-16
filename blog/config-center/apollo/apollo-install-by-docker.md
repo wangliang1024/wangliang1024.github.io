@@ -173,8 +173,8 @@ docker logs -f apollo-portal
 | SPRING_DATASOURCE_URL      | 对应环境ApolloConfigDB的地址                                                                                                           |
 | SPRING_DATASOURCE_USERNAME | 对应环境ApolloConfigDB的用户名                                                                                                          |
 | SPRING_DATASOURCE_PASSWORD | 对应环境ApolloConfigDB的密码                                                                                                           |
-| APOLLO_PORTAL_ENVS(可选)     | 对应ApolloPortalDB中的apollo.portal.envs配置项，如果没有在数据库中配置的话，可以通过此环境参数配置                                                               |
-| DEV_META/PRO_META(可选)      | 配置对应环境的Meta Service地址，以${ENV}_META命名，需要注意的是如果配置了ApolloPortalDB中的apollo.portal.meta.servers配置，则以apollo.portal.meta.servers中的配置为准 |
+| APOLLO_PORTAL_ENVS（可选）     | 对应ApolloPortalDB中的apollo.portal.envs配置项，如果没有在数据库中配置的话，可以通过此环境参数配置                                                               |
+| DEV_META/PRO_META（可选）      | 配置对应环境的Meta Service地址，以${ENV}_META命名，需要注意的是如果配置了ApolloPortalDB中的apollo.portal.meta.servers配置，则以apollo.portal.meta.servers中的配置为准 |
 
 
 ## 五、测试
