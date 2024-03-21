@@ -22,8 +22,10 @@
         * [复杂应用踩坑](native-image/treading-pit-log.md)
 
 * 专题：配置中心
+    * Nacos
+        * [安装Nacos](config-center/nacos/nacos-install-by-docker.md)
     * Apollo
-        * [Docker安装Apollo](config-center/apollo/apollo-install-by-docker.md)
+        * [安装Apollo](config-center/apollo/apollo-install-by-docker.md)
 
 * ————— ⭐️ 碎片知识收集 —————
 * [碎片知识说明](other-article/)
