@@ -18,6 +18,7 @@ docker run \
   -d \
   --name nacos \
   -p 8848:8848 \
+  -p 9848:9848 \
   -e MODE=standalone \
   nacos/nacos-server:v2.3.1
 
@@ -186,3 +187,10 @@ my:
 4. 然后，访问以下链接查看配置是否更新：
     1. 访问：http://127.0.0.1:8080/my ，响应：{"name":"wangliang1024-2","age":31}
     2. 访问：http://127.0.0.1:8080/my-age2 ，响应：32
+
+## 7、查看配置文件的监听列表：
+1. 方式1：
+![查询方式1](img/query-listener-list-1.png)
+
+2. 方式2：
+![查询方式2](img/query-listener-list-2.png)
