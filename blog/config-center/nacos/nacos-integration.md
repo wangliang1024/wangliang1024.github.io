@@ -1,8 +1,9 @@
-# Docker安装Nacos
+# SpringCloud集成Nacos
 
 
 ## 一、Nacos官网
-https://nacos.io/
+https://nacos.io
+
 
 ## 二、下载Nacos镜像
 
@@ -12,6 +13,10 @@ docker pull nacos/nacos-server:v2.3.1
 
 
 ## 三、运行Nacos容器
+
+### 3.1、启用Nacos容器命令：
+
+> 注：8848为HTTP端口（含控制台和HTTP接口），9848为RPC端口。
 
 ```shell
 docker run \
@@ -26,7 +31,7 @@ docker logs -f nacos
 
 ```
 
-#### 配置说明（环境变量）：
+### 3.2、参数配置说明（环境变量配置说明）：
 https://nacos.io/docs/latest/quickstart/quick-start-docker/#common-property-configuration
 
 
@@ -42,6 +47,7 @@ https://nacos.io/docs/latest/quickstart/quick-start-docker/#common-property-conf
 
 ### 4.2、新建配置文件：
 ![添加配置文件截图](img/add-config-screenshot.png)
+
 
 ## 五、SpringCloud应用集成Nacos
 
@@ -113,9 +119,9 @@ spring:
             refresh: true # 是否开启配置热加载
 ```
 
-### 5.3、配置类或SpringBean上，添加注解 `@RefreshScope`，允许配置热加载，示例代码如下：
+### 5.3、配置类或SpringBean上，添加注解 `@RefreshScope`，允许配置热加载：
 
-MyProperties.java：
+#### 1）配置类示例 - MyProperties.java：
 ```java
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -132,7 +138,7 @@ public class MyProperties {
 }
 ```
 
-MyController.java：
+#### 2）SpringBean示例 - MyController.java：
 ```java
 import javax.annotation.Resource;
 
@@ -166,29 +172,31 @@ public class MyController {
 }
 ```
 
-## 6、测试配置中心，及配置热加载：
-1. 在Nacos中，新建配置文件：application-my.yml，内容如下：
-```yaml
-my:
-  name: wangliang1024
-  age: 30
-  age2: 31
-```
-2. 启用应用后并访问以下链接查看当前配置：
-    1. 访问：http://127.0.0.1:8080/my ，响应：{"name":"wangliang1024","age":30}
-    2. 访问：http://127.0.0.1:8080/my-age2 ，响应：31
-3. 再在Nacos中，修改配置文件application-my.yml，内容如下：
-```yaml
-my:
-  name: wangliang1024-2
-  age: 31
-  age2: 32
-```
-4. 然后，访问以下链接查看配置是否更新：
-    1. 访问：http://127.0.0.1:8080/my ，响应：{"name":"wangliang1024-2","age":31}
-    2. 访问：http://127.0.0.1:8080/my-age2 ，响应：32
 
-## 7、查看配置文件的监听列表：
+## 六、测试配置中心，及配置热加载：
+1. 在Nacos中，新建配置文件：application-my.yml，内容如下：
+   ```yaml
+   my:
+     name: wangliang1024
+     age: 30
+     age2: 31
+   ```
+2. 启用应用后并访问以下链接查看当前配置：
+  - 访问：http://127.0.0.1:8080/my ，响应：{"name":"wangliang1024","age":30}
+  - 访问：http://127.0.0.1:8080/my-age2 ，响应：31
+3. 再在Nacos中，修改配置文件application-my.yml，内容如下：
+   ```yaml
+   my:
+     name: wangliang1024-2
+     age: 31
+     age2: 32
+   ```
+4. 然后，访问以下链接查看配置是否更新：
+  - 访问：http://127.0.0.1:8080/my ，响应：{"name":"wangliang1024-2","age":31}
+  - 访问：http://127.0.0.1:8080/my-age2 ，响应：32
+
+
+## 七、查看配置文件的监听列表：
 1. 方式1：
 ![查询方式1](img/query-listener-list-1.png)
 

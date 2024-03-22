@@ -75,11 +75,11 @@ https://github.com/wangliang181230/study-spring-boot.git <br>
 
 <!-- tab:**SpringBoot2** -->
 
-### 2.2、基于 springboot2：
+### 2.2、基于 SpringBoot2：
 
 | 名称                      |  版本号   | 说明                                                                                      |
 |:------------------------|:------:|:----------------------------------------------------------------------------------------|
-| springboot              | 2.7.7  | 问题：2.7.6+，与spring-native:0.12.1不兼容<br>解决：要么降低springboot到2.7.5，要么升级spring-native到0.12.2+ |
+| SpringBoot              | 2.7.7  | 问题：2.7.6+，与spring-native:0.12.1不兼容<br>解决：要么降低SpringBoot到2.7.5，要么升级spring-native到0.12.2+ |
 | native-maven-plugin     | 0.9.20 | 推荐使用最新版本，关注：https://github.com/graalvm/native-build-tools/releases                      |
 | spring-native           | 0.12.2 | 因为是实验阶段产物，所以需要添加 Spring Releases 的 Repositories（见下面的pom.xml）                            |
 | spring-aot-maven-plugin | 0.12.2 | 因为是实验阶段产物，所以需要添加 Spring Releases 的 Repositories（见下面的pom.xml）                            |
@@ -137,7 +137,7 @@ https://github.com/wangliang181230/study-spring-boot.git <br>
         <!--
             由于 org.springframework.boot:spring-boot-starter-parent:2.x.x.pom 中，
             没有id=native的profile，所以需要手动配置所需插件的所有信息。
-            springboot3.0.x的pom中，添加过id=native的profile，所以不需要手动配置那么多的信息。
+            SpringBoot3.0.x的pom中，添加过id=native的profile，所以不需要手动配置那么多的信息。
         -->
         <profile>
             <id>native</id>
@@ -329,11 +329,11 @@ args: [--server.port=8081]
 
 <!-- tab:**SpringBoot3** -->
 
-### 2.3、基于 springboot3：
+### 2.3、基于 SpringBoot3：
 
 | 名称                  |  版本号   | 说明                                                                  |
 |:--------------------|:------:|:--------------------------------------------------------------------|
-| springboot          | 3.0.0+ |                                                                     |
+| SpringBoot          | 3.0.0+ |                                                                     |
 | native-maven-plugin | 0.9.20 | 推荐使用最新版本，关注：https://github.com/graalvm/native-build-tools/releases  |
 
 #### 2.3.1、配置pom.xml
@@ -381,7 +381,7 @@ args: [--server.port=8081]
         <!--
             org.springframework.boot:spring-boot-starter-parent:3.0.x.pom 中，
             已经添加了一个id=native的profile，包含了很多插件配置，所以自建项目中，需要配置的内容会比较少。
-            在springboot2项目中，需要手动配置的内容会更多一些。
+            在SpringBoot2项目中，需要手动配置的内容会更多一些。
         -->
         <profile>
             <id>native</id><!-- 此ID和parent中的profile的ID保持一致，执行打包时，maven命令会更加简短一些。 -->

@@ -55,7 +55,7 @@
    **解决方案：** `native-image` 是在打包时，读取配置值判断是否装配，并生成机器码。所以，先修改好配置值，再开始打包，然后发布运行。不能先打包好再修改配置后运行。 <br>
    **规避方案：** 要想继续在运行时，也能根据配置切换功能，可以通过SPI的方式，根据配置的值加载对应的实现，作为`SpringBean`，但需要添加更多可达性元数据配置，这会导致打出来的native-image包会更大。<br>
 
-4. **问题描述：** 基于 `springboot2.7.x` 打包时抛异常 `java.lang.NoClassDefFoundError: org/springframework/boot/ApplicationServletEnvironment`<br>
+4. **问题描述：** 基于 `SpringBoot2.7.x` 打包时抛异常 `java.lang.NoClassDefFoundError: org/springframework/boot/ApplicationServletEnvironment`<br>
    **错误日志：**
    ```log
    ......省略其他日志
@@ -83,8 +83,8 @@
        ... 16 more
    ......省略其他日志
    ```
-   **问题原因：** `springboot:2.7.6` 及以上版本与 `spring-native:0.12.1` 不兼容导致的；<br>
-   **解决方案：** 将 `springboot` 版本降低到 `2.7.5`，或升级 `spring-native` 到 `0.12.2` 或更高版本。<br>
+   **问题原因：** `SpringBoot:2.7.6` 及以上版本与 `spring-native:0.12.1` 不兼容导致的；<br>
+   **解决方案：** 将 `SpringBoot` 版本降低到 `2.7.5`，或升级 `spring-native` 到 `0.12.2` 或更高版本。<br>
 
 5. **问题描述：** `RootBeanDefinition.getSource()` 在 `native-image` 或 `spring-aot模式` 下运行时，为 `null` <br>
    **解决方案：** 暂无 <br>
