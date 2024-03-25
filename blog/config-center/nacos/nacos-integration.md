@@ -202,3 +202,35 @@ public class MyController {
 
 2. 方式2：
 ![查询方式2](img/query-listener-list-2.png)
+
+
+## 八、开发进阶：订阅配置变更事件
+
+在SpringCloud实现监听器接口：
+```java
+import javax.annotation.Resource;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.stereotype.Component;
+
+@Slf4j
+@Component
+public class MyConfigChangeListener implements ApplicationListener<EnvironmentChangeEvent> {
+
+    @Resource
+    private ConfigurableEnvironment environment;
+
+    @Override
+    public void onApplicationEvent(EnvironmentChangeEvent event) {
+        for (String key : event.getKeys()) {
+            log.info("EvnChangeListener key:{} value:{}", key, environment.getProperty(key));
+
+            // do something
+            // ......
+        }
+    }
+}
+```
