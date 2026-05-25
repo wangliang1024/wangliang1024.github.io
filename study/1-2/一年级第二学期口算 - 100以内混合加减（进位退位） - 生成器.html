@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>一年级第二学期口算题-100以内混合加减（进位退位）练习-生成器</title>
+    <style>
+        body, html {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+			padding: 5px 0 0 0;
+        }
+        * {
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        h2 {
+            text-align: center;
+            margin: 0 0 15px 0;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px 20px 20px 20px;
+        }
+        .settings {
+            margin-bottom: 45px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .settings label {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .settings input {
+            width: 80px;
+            padding: 6px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .header-info {
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .line-info {
+            margin: 0 0 10px 0;
+            font-size: 17px;
+        }
+        button {
+            padding: 8px 20px;
+            background: #42b983;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        button:hover {
+            background: #359469;
+        }
+        .print-area {
+            padding: 0 20px 0 20px;
+        }
+        /* 题目表格样式 - 控制布局 */
+        .questions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .question-item {
+            text-align: left;
+            font-size: 18px;
+            padding: 5px 10px;
+            /* 行高由JS动态控制 */
+        }
+        /* 题目横线样式 */
+        .answer-line {
+            display: inline-block;
+            width: 60px;
+            margin-left: 10px;
+            vertical-align: bottom;
+        }
+        /* 打印优化 */
+        @media print {
+            .settings { display: none; }
+            .print-area { border: none; padding: 0; }
+			.container { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+	<!-- 设置区 -->
+	<div class="settings">
+		<label>题目数量：</label>
+		<input type="number" id="qCount" value="150" min="1">
+		
+		<label>题目列数：</label>
+		<input type="number" id="qCols" value="5" min="1" max="6"/>
+		
+		<label>每行高度(px)：</label>
+		<input type="number" id="rowHeight" value="10.45" min="8" max="30" step="0.01"/>
+		
+		<button onclick="generatePaper()">生成练习卷</button>
+		<button onclick="window.print()">打印练习卷</button>
+	</div>
+	
+	<!-- 标题 -->
+	<h2>一年级第二学期口算题 - 100以内混合加减（进位退位）练习</h2>
+	
+	<!-- 班级/学号/姓名 -->
+    <div class="header-info">
+        <div class="line-info">
+            <span>班级__________</span>
+            <span>学号________</span>
+            <span>姓名________</span>
+            <span>日期________</span>
+            <span>用时________</span>
+        </div>
+    </div>
+
+	<!-- 试卷生成区 -->
+	<div class="print-area" id="printArea"></div>
+</div>
+
+<script>
+	// 生成带进位/退位的加减法题目
+	function generateQuestion() {
+		let isAddition = Math.random() > 0.5;
+		let a, b, res;
+		if (isAddition) {
+			do {
+				a = Math.floor(Math.random() * 90) + 10;
+				b = Math.floor(Math.random() * 90) + 10;
+				res = a + b;
+			} while ((a % 10) + (b % 10) < 10 || res >= 100 || res <= 0);
+			return `${a} + ${b} =`;
+		} else {
+			do {
+				a = Math.floor(Math.random() * 90) + 10;
+				b = Math.floor(Math.random() * 90) + 10;
+				res = a - b;
+			} while (a <= b || (a % 10) >= (b % 10) || res >= 100 || res <= 0);
+			return `${a} - ${b} =`;
+		}
+	}
+
+	// 生成完整试卷
+	function generatePaper() {
+		// 获取用户设置
+		const totalQuestions = parseInt(document.getElementById('qCount').value) || 150;
+		const columns = parseInt(document.getElementById('qCols').value) || 5;
+		const rowHeight = parseFloat(document.getElementById('rowHeight').value) || 10.45;
+		const printArea = document.getElementById('printArea');
+		printArea.style.lineHeight = `${rowHeight}px`
+		
+		// 生成题目数组
+		let questions = [];
+		for (let i = 0; i < totalQuestions; i++) {
+			questions.push(generateQuestion());
+		}
+
+		// 拼接HTML表格
+		let html = `<table class="questions-table">`;
+		let index = 0;
+		
+		while (index < questions.length) {
+			html += `<tr style="height:${rowHeight}px;">`; // 动态设置行高
+			
+			// 每行列数控制
+			for (let i = 0; i < columns; i++) {
+				if (index < questions.length) {
+					html += `
+						<td class="question-item">
+							${questions[index]}<span class="answer-line"></span>
+						</td>
+					`;
+					index++;
+				} else {
+					html += `<td class="question-item"></td>`; // 空单元格补全
+				}
+			}
+			html += `</tr>`;
+		}
+		html += `</table>`;
+		printArea.innerHTML = html;
+	}
+
+	// 页面加载默认生成一份
+	window.onload = generatePaper;
+</script>
+</body>
+</html>
