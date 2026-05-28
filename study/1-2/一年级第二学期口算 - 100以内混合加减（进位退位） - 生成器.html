@@ -1,126 +1,144 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>一年级第二学期口算题-100以内混合加减（进位退位）练习-生成器</title>
-    <style>
-        body, html {
-            font-family: "Microsoft YaHei", "SimSun", sans-serif;
-            margin: 0;
-            background-color: #f5f5f5;
-			padding: 5px 0 0 0;
+	<meta charset="UTF-8"/>
+	<title>100以内混合加减（进位退位）-一年级第二学期口算题-生成器</title>
+	<style>
+		body, html {
+			font-family: "Microsoft YaHei", "SimSun", sans-serif;
+			margin: 0;
+			background-color: #f5f5f5;
+			padding: 0;
+		}
+		* {
+			box-sizing: border-box;
+			font-family: "Microsoft YaHei", sans-serif;
+		}
+		h2 {
+			text-align: center;
+			margin: 0 0 15px 0;
+		}
+		.container {
+			max-width: 1100px;
+			margin: 0 auto;
+			background: #fff;
+			padding: 15px;
+		}
+		.settings {
+			margin-bottom: 45px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			background: #f9f9f9;
+		}
+		.settings label {
+			margin-right: 5px;
+			font-weight: bold;
+		}
+		.settings input {
+			width: 70px;
+			padding: 3px;
+			margin-right: 10px;
+			font-size: 14px;
+			border: 1px solid #ccc;
+		}
+		.header-info {
+			margin-bottom: 20px;
+			font-size: 18px;
+			text-align: center;
+		}
+		.line-info {
+			margin: 0 0 10px 0;
+			font-size: 17px;
+		}
+		button {
+			padding: 4px 10px;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 15px;
+		}
+		.generate_btn {
+            background: #38b47c;
+		}
+		.generate_btn:hover {
+			background: #359469;
+		}
+        .print_btn {
+			background: #3c9dba;
         }
-        * {
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
+        .print_btn:hover {
+			background: #3d69a5;
         }
-        h2 {
-            text-align: center;
-            margin: 0 0 15px 0;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px 20px 20px 20px;
-        }
-        .settings {
-            margin-bottom: 45px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background: #f9f9f9;
-        }
-        .settings label {
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        .settings input {
-            width: 80px;
-            padding: 6px;
-            margin-right: 10px;
-            font-size: 14px;
-        }
-        .header-info {
-            margin-bottom: 20px;
-            font-size: 18px;
-            text-align: center;
-        }
-        .line-info {
-            margin: 0 0 10px 0;
-            font-size: 17px;
-        }
-        button {
-            padding: 8px 20px;
-            background: #42b983;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-        button:hover {
-            background: #359469;
-        }
-        .print-area {
-            padding: 0 20px 0 20px;
-        }
-        /* 题目表格样式 - 控制布局 */
-        .questions-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .question-item {
-            text-align: left;
-            font-size: 18px;
-            padding: 5px 10px;
-            /* 行高由JS动态控制 */
-        }
-        /* 题目横线样式 */
-        .answer-line {
-            display: inline-block;
-            width: 60px;
-            margin-left: 10px;
-            vertical-align: bottom;
-        }
-        /* 打印优化 */
-        @media print {
+		.print-area {
+		}
+		/* 题目表格样式 - 控制布局 */
+		.questions-table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+		.question-item {
+			text-align: left;
+			font-size: 18px;
+			padding: 5px 10px;
+			/* 行高由JS动态控制 */
+		}
+		/* 题目横线样式 */
+		.answer-line {
+			display: inline-block;
+			width: 60px;
+			margin-left: 10px;
+			vertical-align: bottom;
+		}
+		/* 分页样式 - 每页独立区域，打印时自动分页 */
+		.page-section {
+			page-break-after: always; /* 打印时自动分页 */
+			margin: 0 auto 20px auto;
+			padding: 35px 40px 45px 40px;
+			border: 1px solid #ccc;
+			width: 785px;
+		}
+		/* 最后一页取消分页符 */
+		.page-section:last-child {
+			page-break-after: auto;
+		}
+		.error {
+			color: red;
+			display: inline-block;
+			margin: 50px auto;
+			font-size: 20px;
+		}
+		/* 打印优化 */
+		@media print {
             .settings { display: none; }
-            .print-area { border: none; padding: 0; }
-			.container { padding: 0; }
-        }
-    </style>
+            .container { padding: 0; }
+			.page-section { margin: 0; padding: 0; border: none; width: auto; }
+		}
+	</style>
 </head>
 <body>
 <div class="container">
 	<!-- 设置区 -->
 	<div class="settings">
-		<label>题目数量：</label>
-		<input type="number" id="qCount" value="150" min="1">
-		
-		<label>题目列数：</label>
+		<label>页数：</label>
+		<input type="number" id="qPage" value="10" min="1" max="30"/>
+
+		<label>每页题数：</label>
+		<input type="number" id="qCount" value="150" min="1"/>
+
+		<label>列数：</label>
 		<input type="number" id="qCols" value="5" min="1" max="6"/>
-		
-		<label>每行高度(px)：</label>
-		<input type="number" id="rowHeight" value="10.45" min="8" max="30" step="0.01"/>
-		
-		<button onclick="generatePaper()">生成练习卷</button>
-		<button onclick="window.print()">打印练习卷</button>
+
+		<label>行高：</label>
+		<input type="number" id="rowHeight" value="10.62" min="8" max="30" step="0.01"/>
+
+		<label>进位退位题占比(%)：</label>
+		<input type="number" id="rate" value="60" min="0" max="100"/>
+
+		<button class="generate_btn" onclick="generatePaper()">生成卷子</button>
+		<button class="print_btn" onclick="window.print()">打印卷子</button>
 	</div>
-	
-	<!-- 标题 -->
-	<h2>一年级第二学期口算题 - 100以内混合加减（进位退位）练习</h2>
-	
-	<!-- 班级/学号/姓名 -->
-    <div class="header-info">
-        <div class="line-info">
-            <span>班级__________</span>
-            <span>学号________</span>
-            <span>姓名________</span>
-            <span>日期________</span>
-            <span>用时________</span>
-        </div>
-    </div>
 
 	<!-- 试卷生成区 -->
 	<div class="print-area" id="printArea"></div>
@@ -128,68 +146,147 @@
 
 <script>
 	// 生成带进位/退位的加减法题目
-	function generateQuestion() {
+	function generateQuestion(needCarryBorrow) {
 		let isAddition = Math.random() > 0.5;
 		let a, b, res;
+
 		if (isAddition) {
-			do {
-				a = Math.floor(Math.random() * 90) + 10;
-				b = Math.floor(Math.random() * 90) + 10;
-				res = a + b;
-			} while ((a % 10) + (b % 10) < 10 || res >= 100 || res <= 0);
+			// 加法
+			if (needCarryBorrow) {
+				// 必须进位 + 结果 0 < res < 100
+				do {
+					a = Math.floor(Math.random() * 90) + 10;
+					b = Math.floor(Math.random() * 90) + 10;
+					res = a + b;
+				} while ((a % 10) + (b % 10) < 10 || res >= 100 || res <= 0);
+			} else {
+				// 不进位 + 结果 0 < res < 100
+				do {
+					a = Math.floor(Math.random() * 90) + 10;
+					b = Math.floor(Math.random() * 90) + 10;
+					res = a + b;
+				} while ((a % 10) + (b % 10) >= 10 || res >= 100 || res <= 0);
+			}
 			return `${a} + ${b} =`;
 		} else {
-			do {
-				a = Math.floor(Math.random() * 90) + 10;
-				b = Math.floor(Math.random() * 90) + 10;
-				res = a - b;
-			} while (a <= b || (a % 10) >= (b % 10) || res >= 100 || res <= 0);
+			// 减法
+			if (needCarryBorrow) {
+				// 必须退位 + 结果 0 < res < 100
+				do {
+					a = Math.floor(Math.random() * 90) + 10;
+					b = Math.floor(Math.random() * 90) + 10;
+					res = a - b;
+				} while (a <= b || (a % 10) >= (b % 10) || res >= 100 || res <= 0);
+			} else {
+				// 不退位 + 结果 0 < res < 100
+				do {
+					a = Math.floor(Math.random() * 90) + 10;
+					b = Math.floor(Math.random() * 90) + 10;
+					res = a - b;
+				} while (a <= b || (a % 10) < (b % 10) || res >= 100 || res <= 0);
+			}
 			return `${a} - ${b} =`;
 		}
 	}
 
-	// 生成完整试卷
-	function generatePaper() {
-		// 获取用户设置
-		const totalQuestions = parseInt(document.getElementById('qCount').value) || 150;
-		const columns = parseInt(document.getElementById('qCols').value) || 5;
-		const rowHeight = parseFloat(document.getElementById('rowHeight').value) || 10.45;
-		const printArea = document.getElementById('printArea');
-		printArea.style.lineHeight = `${rowHeight}px`
-		
-		// 生成题目数组
+	// 生成单页题目HTML
+	function generateSinglePage(pageNum, totalPerPage, columns, rowHeight, rate, rateText) {
+		// 生成当前页题目数组
 		let questions = [];
-		for (let i = 0; i < totalQuestions; i++) {
-			questions.push(generateQuestion());
-		}
+		let cbCount = 0;
+		let cbMax = Math.floor(totalPerPage * rate / 100);
+		for (let i = 0; i < totalPerPage; i++) {
+			let rnd = Math.random() * 100;
+			let needCB = rnd < rate;
 
-		// 拼接HTML表格
-		let html = `<table class="questions-table">`;
+			if (!needCB && totalPerPage - i <= cbMax - cbCount) {
+				// 如果剩余题目不足进位退位题数，则强制生成进位退位题
+				needCB = true;
+			} else if (needCB && cbCount >= cbMax) {
+				// 如果已生成进位退位题数已达到最大值，则强制生成非进位退位题
+				needCB = false;
+			}
+
+			if (needCB) {
+				cbCount++;
+			}
+
+			// 生成题目
+			questions.push(generateQuestion(needCB));
+		}
+		// console.info(`第 ${pageNum < 10 ? ' ' : ''}${pageNum} 页：cbCount: ${cbCount}`)
+
+		// questions顺序打乱，避免最后几题 `都是进位退位题` 或 `都不是进位退位题`
+		questions = questions.sort(() => Math.random() - 0.5);
+
+		// 拼接单页HTML
+		let pageHtml = `
+		<div class="page-section">
+			<h2>一年级第二学期口算题 - 100以内加减（进位退位${rateText}）</h2>
+			<div class="header-info">
+				<div class="line-info">
+					<span>班级__________</span>
+					<span>学号________</span>
+					<span>姓名________</span>
+					<span>日期________</span>
+					<span>用时________</span>
+				</div>
+			</div>
+			<table class="questions-table" style="line-height:${rowHeight}px">
+		`;
+
 		let index = 0;
-		
 		while (index < questions.length) {
-			html += `<tr style="height:${rowHeight}px;">`; // 动态设置行高
-			
-			// 每行列数控制
+			pageHtml += `<tr style="height:${rowHeight}px;">`;
 			for (let i = 0; i < columns; i++) {
 				if (index < questions.length) {
-					html += `
-						<td class="question-item">
-							${questions[index]}<span class="answer-line"></span>
-						</td>
-					`;
+					pageHtml += `<td class="question-item">${questions[index]}<span class="answer-line"></span></td>`;
 					index++;
 				} else {
-					html += `<td class="question-item"></td>`; // 空单元格补全
+					pageHtml += `<td class="question-item"></td>`;
 				}
 			}
-			html += `</tr>`;
+			pageHtml += `</tr>`;
 		}
-		html += `</table>`;
-		printArea.innerHTML = html;
+
+		pageHtml += `
+			</table>
+		</div>
+		`;
+		return pageHtml;
 	}
 
-	// 页面加载默认生成一份
+	// 生成10页完整试卷
+	function generatePaper() {
+		try {
+			// 获取用户设置
+			const totalPerPage = parseInt(document.getElementById('qCount').value) || 150;
+			const columns = parseInt(document.getElementById('qCols').value) || 5;
+			const page = parseInt(document.getElementById('qPage').value) || 10;
+			const rowHeight = parseFloat(document.getElementById('rowHeight').value) || 10.62;
+			const rate = parseInt(document.getElementById('rate').value) || 60;
+			const printArea = document.getElementById('printArea');
+
+			// 进退位占比文本
+			const rateText = rate < 100 ? `-占比${rate}%` : '';
+
+			// 清空原有内容
+			printArea.innerHTML = '';
+
+			// 生成10页内容
+			let allPagesHtml = '';
+			for (let pageNum = 1; pageNum <= page; pageNum++) {
+				allPagesHtml += generateSinglePage(pageNum, totalPerPage, columns, rowHeight, rate, rateText);
+			}
+
+			// 插入到页面中
+			printArea.innerHTML = allPagesHtml;
+		} catch (e) {
+			printArea.innerHTML = `<div class="error"><strong>生成失败，生成脚本报错</strong>：${e.message}</div>`;
+		}
+	}
+
+	// 页面加载默认生成10页
 	window.onload = generatePaper;
 </script>
 </body>
