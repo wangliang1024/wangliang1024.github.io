@@ -17,9 +17,10 @@
 		h2 {
 			text-align: center;
 			margin: 0 0 15px 0;
+			font-size: 24px;
 		}
 		.container {
-			max-width: 1100px;
+			max-width: 1300px;
 			margin: 0 auto;
 			background: #fff;
 			padding: 15px;
@@ -44,12 +45,11 @@
 		}
 		.header-info {
 			margin-bottom: 20px;
-			font-size: 18px;
 			text-align: center;
 		}
 		.line-info {
 			margin: 0 0 10px 0;
-			font-size: 17px;
+            font-size: 18px;
 		}
 		button {
 			padding: 4px 10px;
@@ -80,9 +80,7 @@
 		}
 		.question-item {
 			text-align: left;
-			font-size: 18px;
 			padding: 5px 10px;
-			/* 行高由JS动态控制 */
 		}
 		/* 题目横线样式 */
 		.answer-line {
@@ -131,7 +129,10 @@
 		<input type="number" id="qCols" value="5" min="1" max="6"/>
 
 		<label>行高：</label>
-		<input type="number" id="rowHeight" value="10.62" min="8" max="30" step="0.01"/>
+		<input type="number" id="rowHeight" value="10.82" min="8" max="60" step="0.01"/>
+
+		<label>字体大小：</label>
+		<input type="number" id="fontSize" value="22" min="12" max="40"/>
 
 		<label>进位退位题占比(%)：</label>
 		<input type="number" id="rate" value="60" min="0" max="100"/>
@@ -224,7 +225,7 @@
 		<div class="page-section">
 			<h2>一年级第二学期口算题 - 100以内加减（进位退位${rateText}）</h2>
 			<div class="header-info">
-				<div class="line-info">
+				<div class="line-info" style="line-height:${rowHeight}px">
 					<span>班级__________</span>
 					<span>学号________</span>
 					<span>姓名________</span>
@@ -237,7 +238,7 @@
 
 		let index = 0;
 		while (index < questions.length) {
-			pageHtml += `<tr style="height:${rowHeight}px;">`;
+			pageHtml += `<tr>`;
 			for (let i = 0; i < columns; i++) {
 				if (index < questions.length) {
 					pageHtml += `<td class="question-item">${questions[index]}<span class="answer-line"></span></td>`;
@@ -264,8 +265,11 @@
 			const columns = parseInt(document.getElementById('qCols').value) || 5;
 			const page = parseInt(document.getElementById('qPage').value) || 10;
 			const rowHeight = parseFloat(document.getElementById('rowHeight').value) || 10.62;
+			const fontSize = parseFloat(document.getElementById('fontSize').value) || 12;
 			const rate = parseInt(document.getElementById('rate').value) || 60;
 			const printArea = document.getElementById('printArea');
+
+			printArea.style.fontSize = `${fontSize}px`
 
 			// 进退位占比文本
 			const rateText = rate < 100 ? `-占比${rate}%` : '';
