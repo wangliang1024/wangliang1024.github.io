@@ -12,7 +12,6 @@
 		}
 		* {
 			box-sizing: border-box;
-			font-family: "Microsoft YaHei", sans-serif;
 		}
 		h2 {
 			text-align: center;
@@ -46,10 +45,7 @@
 		.header-info {
 			margin-bottom: 20px;
 			text-align: center;
-		}
-		.line-info {
-			margin: 0 0 10px 0;
-            font-size: 18px;
+            font-size: 17px;
 		}
 		button {
 			padding: 4px 10px;
@@ -89,6 +85,14 @@
 			margin-left: 10px;
 			vertical-align: bottom;
 		}
+		.op {
+			display: inline-block;
+			height: 10px;
+			line-height: 9px;
+			margin: 0 2px 0 3px;
+			vertical-align: top;
+            font-family: "Consolas", "Courier New", "Lucida Console", monospace !important;
+		}
 		/* 分页样式 - 每页独立区域，打印时自动分页 */
 		.page-section {
 			page-break-after: always; /* 打印时自动分页 */
@@ -112,6 +116,10 @@
             .settings { display: none; }
             .container { padding: 0; }
 			.page-section { margin: 0; padding: 0; border: none; width: auto; }
+			.question-item {
+				-webkit-print-color-adjust: exact;
+				print-color-adjust: exact;
+			}
 		}
 	</style>
 </head>
@@ -135,7 +143,7 @@
 		<input type="number" id="fontSize" value="22" min="12" max="40"/>
 
 		<label>进位退位题占比(%)：</label>
-		<input type="number" id="rate" value="60" min="0" max="100"/>
+		<input type="number" id="rate" value="50.0" min="0" max="100" step="0.5"/>
 
 		<button class="generate_btn" onclick="generatePaper()">生成卷子</button>
 		<button class="print_btn" onclick="window.print()">打印卷子</button>
@@ -168,7 +176,7 @@
 					res = a + b;
 				} while ((a % 10) + (b % 10) >= 10 || res >= 100 || res <= 0);
 			}
-			return `${a} + ${b} =`;
+			return `${a}<span class="op">+</span>${b}<span class="op">=</span>`;
 		} else {
 			// 减法
 			if (needCarryBorrow) {
@@ -186,7 +194,7 @@
 					res = a - b;
 				} while (a <= b || (a % 10) < (b % 10) || res >= 100 || res <= 0);
 			}
-			return `${a} - ${b} =`;
+			return `${a}<span class="op">-</span>${b}<span class="op">=</span>`;
 		}
 	}
 
@@ -223,15 +231,14 @@
 		// 拼接单页HTML
 		let pageHtml = `
 		<div class="page-section">
-			<h2>一年级第二学期口算题 - 100以内加减（进位退位${rateText}）</h2>
-			<div class="header-info">
-				<div class="line-info" style="line-height:${rowHeight}px">
-					<span>班级__________</span>
-					<span>学号________</span>
-					<span>姓名________</span>
-					<span>日期________</span>
-					<span>用时________</span>
-				</div>
+			<h2>一年级第二学期100以内混合加减口算题${rateText}</h2>
+			<div class="header-info" style="line-height:${rowHeight}px">
+				<span>班级________</span>
+				<span>学号________</span>
+				<span>姓名________</span>
+				<span>日期________</span>
+				<span>用时________</span>
+				<span>成绩________</span>
 			</div>
 			<table class="questions-table" style="line-height:${rowHeight}px">
 		`;
@@ -266,13 +273,26 @@
 			const page = parseInt(document.getElementById('qPage').value) || 10;
 			const rowHeight = parseFloat(document.getElementById('rowHeight').value) || 10.62;
 			const fontSize = parseFloat(document.getElementById('fontSize').value) || 12;
-			const rate = parseInt(document.getElementById('rate').value) || 60;
+			let rate = parseFloat(document.getElementById('rate').value);
+			if (!(rate >= 0 && rate <= 100)) {
+				if (rate > 100) {
+					rate = 100.0;
+				} else if (rate < 0) {
+					rate = 0.0;
+				} else {
+					rate = 50.0;
+				}
+				document.getElementById('rate').value = rate;
+			}
 			const printArea = document.getElementById('printArea');
 
 			printArea.style.fontSize = `${fontSize}px`
 
-			// 进退位占比文本
-			const rateText = rate < 100 ? `-占比${rate}%` : '';
+			// 进位退位题数
+			const cbMax = Math.floor(totalPerPage * rate / 100);
+			let rateText = cbMax > 0
+				? `（${cbMax < totalPerPage ? '含' : ''}进位退位${cbMax < totalPerPage ? `${cbMax}题` : ''}）`
+				: '';
 
 			// 清空原有内容
 			printArea.innerHTML = '';
