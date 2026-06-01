@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>自动截取清晰人脸 + 暂停/恢复识别</title>
+	<style>
+		body { margin: 0; padding: 20px; }
+		#video {
+			width: 100%;
+			max-width: 720px;
+			transform: scaleX(-1); /* 摄像头镜像，更符合视觉习惯 */
+		}
+		#canvas {
+			position: absolute;
+			top: 20px;
+			left: 0;
+			pointer-events: none; /* 不阻挡点击 */
+		}
+
+		/* 截图预览弹窗 */
+		.preview-modal {
+			display: none; /* 默认隐藏 */
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background: rgba(0,0,0,0.8);
+			z-index: 9999;
+			justify-content: center;
+			align-items: center;
+		}
+		.preview-content {
+			position: relative;
+			max-width: 90%;
+			max-height: 90%;
+		}
+		#capturedImage {
+			width: 100%;
+			border: 4px solid #fff;
+			border-radius: 8px;
+            transform: scaleX(-1);
+		}
+		.close-btn {
+			position: absolute;
+			top: -15px;
+			right: -15px;
+			background: red;
+			color: white;
+			font-size: 20px;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			border: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<video id="video" autoplay muted playsinline></video>
+<canvas id="canvas"></canvas>
+
+<!-- 截图放大预览弹窗 -->
+<div class="preview-modal" id="previewModal">
+	<div class="preview-content">
+		<img id="capturedImage" alt="截取的人脸">
+		<button class="close-btn" id="closeBtn">×</button>
+	</div>
+</div>
+
+<script src="./face-api-1.7.15.min.js"></script>
+<script>
+	const video = document.getElementById('video');
+	const canvas = document.getElementById('canvas');
+	const ctx = canvas.getContext('2d');
+
+	const previewModal = document.getElementById('previewModal');
+	const capturedImage = document.getElementById('capturedImage');
+	const closeBtn = document.getElementById('closeBtn');
+
+	let isDetecting = true; // 控制是否开启识别
+	let detectionInterval = null;
+
+	// 1. 加载模型
+	async function loadModels() {
+		await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/');
+		await faceapi.nets.faceLandmark68Net.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/');
+	}
+
+	// 2. 启动摄像头
+	async function startCamera() {
+		const stream = await navigator.mediaDevices.getUserMedia({
+			video: { width: 720, height: 560 }
+		});
+		video.srcObject = stream;
+	}
+
+	// 3. 实时人脸检测
+	function startFaceDetection() {
+		if (detectionInterval) clearInterval(detectionInterval);
+
+		detectionInterval = setInterval(async () => {
+			if (!isDetecting) return; // 暂停时不执行识别
+
+			isDetecting = false; // 避免检测到人脸时重复执行
+
+			canvas.width = video.videoWidth;
+			canvas.height = video.videoHeight;
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			// 检测单张人脸
+			const detection = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions({
+				scoreThreshold: 0.9 // 清晰度阈值：越高越严格
+			}));
+
+			if (detection) {
+				// 绘制人脸框
+				const { x, y, width, height } = detection.box;
+				ctx.strokeStyle = '#00ff00';
+				ctx.lineWidth = 3;
+				ctx.strokeRect(x, y, width, height);
+
+				// ========== 核心：检测到清晰人脸 → 自动截图 ==========
+				captureFace(detection.box);
+			} else {
+				isDetecting = true; // 恢复检测
+			}
+		}, 100);
+	}
+
+	// 4. 自动截图 + 暂停识别
+	function captureFace(faceBox) {
+		// 暂停检测
+		isDetecting = false;
+
+		clearInterval(detectionInterval);
+		ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空人脸框
+
+		// 创建截图画布
+		const captureCanvas = document.createElement('canvas');
+		const captureCtx = captureCanvas.getContext('2d');
+
+		// 稍微扩大一点截图范围，更美观
+		const padding = 40;
+		const x = Math.max(0, faceBox.x - padding);
+		const y = Math.max(0, faceBox.y - padding);
+		const w = faceBox.width + padding * 2;
+		const h = faceBox.height + padding * 2;
+
+		captureCanvas.width = w;
+		captureCanvas.height = h;
+
+		// 从视频中截取人脸区域
+		captureCtx.drawImage(
+			video,
+			x, y, w, h,
+			0, 0, w, h
+		);
+
+		// 转为图片并显示
+		const imageUrl = captureCanvas.toDataURL('image/png');
+		capturedImage.src = imageUrl;
+		previewModal.style.display = 'flex';
+	}
+
+	// 5. 关闭弹窗 → 恢复识别
+	closeBtn.onclick = function () {
+		previewModal.style.display = 'none';
+		isDetecting = true; // 重新开启
+		startFaceDetection(); // 重启检测
+	};
+
+	// 入口
+	window.onload = async () => {
+		await loadModels();
+		await startCamera();
+		video.onloadedmetadata = () => {
+			startFaceDetection();
+		};
+	};
+</script>
+</body>
+</html>

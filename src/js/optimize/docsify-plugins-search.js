@@ -376,9 +376,7 @@
 		let count = 0;
 
 		paths.forEach(function (path) {
-			let indexKey = path === "/../issues" ? "/issues" : path; // 特殊处理一下
-
-			if (INDEXS[indexKey]) {
+			if (INDEXS[path]) {
 				return count++;
 			}
 
