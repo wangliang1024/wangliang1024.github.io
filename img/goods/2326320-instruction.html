@@ -17,8 +17,13 @@
 	</div>
 	<script>
 		var text = '@2023 Playside Creations ● 0klahoma City, 0K 73179 ● www.hobbylobby.com ● Made in China';
-		var orderId = (location.search || "").replace('?', '');
-		if (orderId && orderId.length < 16) text = orderId + ' ● ' + text;
+		var orderId = (location.search || '').replace('?', '');
+		if (orderId && orderId.length < 16) {
+			if (orderId === 'HL753543') {
+				orderId = 'HL771882'
+			}
+			text = orderId + ' ● ' + text;
+		}
 		document.getElementById('orderId').innerHTML = text;
 	</script>
 </body>
